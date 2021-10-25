@@ -19,7 +19,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       return Scaffold(
         body: Stack(
           children: [
-            Images.welcomeScreenBackground,
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Image(
+                image: ExactAssetImage(Images.fullPath(Images.welcomeBackgroundImagePath)),
+                fit: BoxFit.fill,
+              ),
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
