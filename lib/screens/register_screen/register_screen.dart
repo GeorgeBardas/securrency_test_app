@@ -23,6 +23,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
@@ -76,6 +77,7 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
                       child: Column(
                         children: [
                           InputField(
+                            fieldController: _emailController,
                             label: AppLocalizations.of(context)!.register_screen_email_label,
                             mandatory: true,
                             validators: [
@@ -84,6 +86,7 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
                             ],
                           ),
                           InputField(
+                            fieldController: _passwordController,
                             label: AppLocalizations.of(context)!.register_screen_password_label,
                             isObscured: true,
                             canToggleObscure: true,
@@ -94,6 +97,7 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
                             ],
                           ),
                           InputField(
+                            fieldController: _confirmPasswordController,
                             label: AppLocalizations.of(context)!.register_screen_confirm_password_label,
                             isObscured: true,
                             canToggleObscure: true,
@@ -107,7 +111,7 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
                             label: AppLocalizations.of(context)!.register_screen_birth_date_label,
                             readOnly: true,
                             mandatory: true,
-                            onTap: () => Platform.isIOS ? _showCupertinoDatePicker() : _showMaterialDatePicker(),
+                            onTap: () => Platform.isIOS ? _showCupertinoDatePicker(viewModel) : _showMaterialDatePicker(viewModel),
                             validators: [
                               RequiredValidator(errorText: AppLocalizations.of(context)!.mandatory_field)
                             ],
@@ -147,12 +151,17 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
       } else if (!viewModel.matchPasswords(_passwordController.text, _confirmPasswordController.text)) {
         showErrorToast(AppLocalizations.of(context)!.register_screen_confirm_password_error);
       } else {
-
+        var user = viewModel.getUser(
+            _emailController.text,
+            _passwordController.text,
+            _countryController.text,
+        );
+        print(user.password);
       }
     }
   }
 
-  void _showCupertinoDatePicker() {
+  void _showCupertinoDatePicker(RegisterViewModel viewModel) {
     showCupertinoModalPopup(
         context: context,
         builder: (_) => Container(
@@ -171,9 +180,10 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
                   maximumDate: DateTime.now().add(const Duration(days: 1)),
                   use24hFormat: true,
                   mode: CupertinoDatePickerMode.date,
-                  initialDateTime: DateTime.now(),
+                  initialDateTime: viewModel.selectedDate ?? DateTime.now(),
                   onDateTimeChanged: (selectedDate) {
                     _dateController.text = DateFormat(DateFormat.YEAR_MONTH_DAY).format(selectedDate);
+                    viewModel.setSelectedDate(selectedDate);
                   },
                 ),
               ),
@@ -183,16 +193,17 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
     );
   }
 
-  Future<void> _showMaterialDatePicker() async {
+  Future<void> _showMaterialDatePicker(RegisterViewModel viewModel) async {
     final DateTime? selectedDate = await showDatePicker(
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
-      initialDate: DateTime.now(),
+      initialDate: viewModel.selectedDate ?? DateTime.now(),
       context: context,
     );
 
     if (selectedDate != null) {
       _dateController.text = DateFormat(DateFormat.YEAR_MONTH_DAY).format(selectedDate);
+      viewModel.setSelectedDate(selectedDate);
     }
   }
 

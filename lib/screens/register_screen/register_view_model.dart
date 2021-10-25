@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import "package:securrency_test_app/networking/models/country.dart";
+import "package:securrency_test_app/networking/models/user.dart";
 import "package:securrency_test_app/networking/repositories/countries_repository.dart";
+import "package:securrency_test_app/util/encrypt_util.dart";
 
 class RegisterViewModel extends ChangeNotifier {
 
@@ -22,6 +24,15 @@ class RegisterViewModel extends ChangeNotifier {
     _setLoading(false);
 
     return result;
+  }
+
+  User getUser(String email, String password, String country) {
+    return User.name(
+      email,
+      encryption(password),
+      _selectedDate!,
+      country,
+    );
   }
   
   void _setLoading(bool isLoading) {
