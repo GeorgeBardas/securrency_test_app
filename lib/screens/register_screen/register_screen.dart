@@ -36,6 +36,12 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
     _getData();
   }
 
+  @override
+  void dispose() {
+    Provider.of<RegisterViewModel>(context, listen: false).clear();
+    super.dispose();
+  }
+
   Future<void> _getData() async {
     final countries = await Provider.of<RegisterViewModel>(context, listen: false).getCountries();
     if (countries == null) {
@@ -156,7 +162,6 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
             _passwordController.text,
             _countryController.text,
         );
-        print(user.password);
       }
     }
   }

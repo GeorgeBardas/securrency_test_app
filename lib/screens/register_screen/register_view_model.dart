@@ -56,4 +56,10 @@ class RegisterViewModel extends ChangeNotifier {
     return password == currentPassword;
   }
 
+  void clear() {
+    _countries = [];
+    _selectedDate = null;
+    _isLoading = false;
+  }
+
 }
