@@ -8,7 +8,9 @@ void main() {
     flavor: Flavor.uat,
     color: Colors.deepPurpleAccent,
     values: FlavorValues(
-        baseUrl: "uat-url.com",
+      baseUrl: "uat-url.com",
+      countriesUrl: "http://api.countrylayer.com/v2/",
+      countriesApiKey: "c9d04d904e56105ff370e404477c1190",
     ),
   );
 

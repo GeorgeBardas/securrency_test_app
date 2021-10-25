@@ -2,5 +2,22 @@
   "app_title": "Test Application",
 
   "welcome_screen_login_button": "LOG IN",
-  "welcome_screen_register_button": "REGISTER"
+  "welcome_screen_register_button": "REGISTER",
+
+  "ok": "OK",
+  "generic_error": "Something went wrong!",
+
+  "mandatory_field": "Mandatory field",
+
+  "register_screen_title": "Register",
+  "register_screen_email_label": "Email",
+  "register_screen_email_error": "Invalid email format",
+  "register_screen_password_label": "Password",
+  "register_screen_password_error": "Password must be 8 characters long and must contain at least one letter, one special character and one number",
+  "register_screen_confirm_password_label": "Confirm Password",
+  "register_screen_confirm_password_error": "Passwords must match",
+  "register_screen_birth_date_label": "Birth Date",
+  "register_screen_birth_date_error": "You must be 18 years old to continue",
+  "register_screen_country_label": "Residence Country",
+  "register_screen_next_button": "Next"
 }

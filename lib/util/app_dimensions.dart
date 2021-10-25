@@ -7,4 +7,6 @@ class AppDimensions {
   static const buttonHeight = 55.0;
   static const buttonBorderRadius = 7.0;
   static const buttonBorderWidth = 2.0;
+
+  static const titleFontSize = 30.0;
 }

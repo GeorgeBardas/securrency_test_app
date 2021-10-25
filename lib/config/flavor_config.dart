@@ -5,8 +5,12 @@ enum Flavor { dev, uat, prod }
 class FlavorValues {
   FlavorValues({
     required this.baseUrl,
+    required this.countriesUrl,
+    required this.countriesApiKey,
   });
   final String baseUrl;
+  final String countriesUrl;
+  final String countriesApiKey;
 }
 
 class FlavorConfig {

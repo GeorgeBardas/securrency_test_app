@@ -3,7 +3,9 @@ import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:provider/provider.dart";
 import "package:securrency_test_app/providers/general_provider.dart";
 import "package:securrency_test_app/util/app_dimensions.dart";
+import "package:securrency_test_app/util/base_screen_state.dart";
 import "package:securrency_test_app/util/images.dart";
+import "package:securrency_test_app/util/routes.dart";
 import "package:securrency_test_app/util/widgets/primary_button.dart";
 import "package:securrency_test_app/util/widgets/secondary_button.dart";
 
@@ -12,7 +14,7 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends BaseScreenState<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<GeneralProvider>(builder: (context, general, child) {
@@ -50,7 +52,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           padding: const EdgeInsets.all(AppDimensions.defaultPadding),
                           child: PrimaryButton(
                             title: AppLocalizations.of(context)!.welcome_screen_register_button,
-                            onPressed: () {},
+                            onPressed: () async {
+                              final error = await Navigator.of(context).pushNamed(Routes.registerScreen);
+                              if (error != null) {
+                                showErrorToast(AppLocalizations.of(context)!.generic_error);
+                              }
+                            },
                           ),
                         ),
                       ),

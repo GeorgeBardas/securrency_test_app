@@ -5,11 +5,23 @@ ThemeData light = ThemeData.light().copyWith(
   brightness: Brightness.light,
   primaryColor: Colors.white,
   primaryColorDark: Colors.black,
+  colorScheme: const ColorScheme.light().copyWith(primary: Colors.black),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
       primary: Colors.black,
       textStyle: const TextStyle(color: Colors.black),
       side: const BorderSide(width: AppDimensions.buttonBorderWidth),
+    ),
+  ),
+  textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: Colors.black,
+  ),
+  inputDecorationTheme: const InputDecorationTheme(
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(width: AppDimensions.buttonBorderWidth),
+    ),
+    border: OutlineInputBorder(
+      borderSide: BorderSide(width: AppDimensions.buttonBorderWidth),
     ),
   ),
 );
