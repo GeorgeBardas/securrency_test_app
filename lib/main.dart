@@ -1,70 +1,42 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
+import "package:provider/provider.dart";
+import "package:provider/single_child_widget.dart";
+import "package:securrency_test_app/providers/general_provider.dart";
+import "package:securrency_test_app/screens/welcome_screen/welcome_screen.dart";
+import "package:securrency_test_app/util/app_themes.dart";
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateTitle: (context) {
-        return AppLocalizations.of(context)!.app_title;
-      },
-
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      supportedLocales: const [
-        Locale("en", ""),
-      ],
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      home: MyHomePage(),
-    );
+    return Consumer<GeneralProvider>(builder: (context, generalProvider, child) {
+      return MaterialApp(
+        onGenerateTitle: (context) {
+          return AppLocalizations.of(context)!.app_title;
+        },
+        supportedLocales: const [
+          Locale("en", ""),
+        ],
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        themeMode: generalProvider.getThemeMode,
+        theme: light,
+        darkTheme: dark,
+        home: WelcomeScreen(),
+        debugShowCheckedModeBanner: kDebugMode,
+      );
+    },);
   }
 }
 
-class MyHomePage extends StatefulWidget {
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.app_title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text("You have pushed the button this many times:",),
-            Text(
-              "$_counter",
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: "Increment",
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
+List<SingleChildWidget> getProviders() {
+  return [
+    ChangeNotifierProvider(create: (_) => GeneralProvider()),
+  ];
 }
