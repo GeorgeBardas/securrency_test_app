@@ -1,11 +1,6 @@
-import 'dart:typed_data';
+import "dart:typed_data";
 
 import "package:flutter/material.dart";
-import 'package:image_picker/image_picker.dart';
-import "package:securrency_test_app/networking/models/country.dart";
-import "package:securrency_test_app/networking/models/user.dart";
-import "package:securrency_test_app/networking/repositories/countries_repository.dart";
-import "package:securrency_test_app/util/encrypt_util.dart";
 
 class RegisterPhotoViewModel extends ChangeNotifier {
 

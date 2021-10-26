@@ -23,6 +23,7 @@
 
   "register_photo_screen_title": "Make a selfie",
   "register_photo_placeholder_text": "Photo",
+  "register_photo_error": "You must take a selfie first",
   "register_photo_screen_next_button": "NEXT",
 
   "register_summary_screen_title": "Summary",

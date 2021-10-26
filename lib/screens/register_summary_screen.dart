@@ -1,20 +1,13 @@
-import "dart:io";
-
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
-import "package:form_field_validator/form_field_validator.dart";
 import "package:intl/intl.dart";
 import "package:provider/provider.dart";
-import "package:securrency_test_app/networking/models/country.dart";
-import 'package:securrency_test_app/networking/models/user.dart';
+import "package:securrency_test_app/networking/models/user.dart";
 import "package:securrency_test_app/screens/register_screen/register_view_model.dart";
 import "package:securrency_test_app/util/app_dimensions.dart";
 import "package:securrency_test_app/util/base_screen_state.dart";
-import 'package:securrency_test_app/util/routes.dart';
-import "package:securrency_test_app/util/widgets/field_validators.dart";
-import "package:securrency_test_app/util/widgets/input_field.dart";
-import 'package:securrency_test_app/util/widgets/photo_widget.dart';
+import "package:securrency_test_app/util/widgets/photo_widget.dart";
 import "package:securrency_test_app/util/widgets/primary_button.dart";
 
 class RegisterSummaryScreen extends StatefulWidget {
@@ -55,7 +48,7 @@ class _RegisterSummaryScreenState extends BaseScreenState<RegisterSummaryScreen>
                   child: Padding(
                     padding: const EdgeInsets.only(
                       left: AppDimensions.defaultPadding,
-                      right: AppDimensions.defaultPadding
+                      right: AppDimensions.defaultPadding,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +80,7 @@ class _RegisterSummaryScreenState extends BaseScreenState<RegisterSummaryScreen>
               Padding(
                 padding: const EdgeInsets.only(
                   left: AppDimensions.defaultPadding,
-                  right: AppDimensions.defaultPadding
+                  right: AppDimensions.defaultPadding,
                 ),
                 child: PrimaryButton(
                   title: AppLocalizations.of(context)!.register_summary_screen_button,

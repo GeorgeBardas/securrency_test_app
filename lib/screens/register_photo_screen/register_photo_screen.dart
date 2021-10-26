@@ -1,26 +1,17 @@
-import "dart:io";
-import 'dart:typed_data';
+import "dart:typed_data";
 
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
-import "package:form_field_validator/form_field_validator.dart";
-import 'package:image_picker/image_picker.dart';
-import "package:intl/intl.dart";
+import "package:image_picker/image_picker.dart";
 import "package:provider/provider.dart";
-import "package:securrency_test_app/networking/models/country.dart";
-import 'package:securrency_test_app/networking/models/user.dart';
-import 'package:securrency_test_app/screens/register_photo_screen/register_photo_view_model.dart';
-import "package:securrency_test_app/screens/register_screen/register_view_model.dart";
-import 'package:securrency_test_app/screens/register_summary_screen.dart';
+import "package:securrency_test_app/networking/models/user.dart";
+import "package:securrency_test_app/screens/register_photo_screen/register_photo_view_model.dart";
+import "package:securrency_test_app/screens/register_summary_screen.dart";
 import "package:securrency_test_app/util/app_dimensions.dart";
 import "package:securrency_test_app/util/base_screen_state.dart";
-import 'package:securrency_test_app/util/images.dart';
-import 'package:securrency_test_app/util/routes.dart';
-import "package:securrency_test_app/util/widgets/field_validators.dart";
-import "package:securrency_test_app/util/widgets/input_field.dart";
-import 'package:securrency_test_app/util/widgets/photo_placeholder.dart';
-import 'package:securrency_test_app/util/widgets/photo_widget.dart';
+import "package:securrency_test_app/util/widgets/photo_placeholder.dart";
+import "package:securrency_test_app/util/widgets/photo_widget.dart";
 import "package:securrency_test_app/util/widgets/primary_button.dart";
 
 class RegisterPhotoScreen extends StatefulWidget {
@@ -64,24 +55,14 @@ class _RegisterPhotoScreenState extends BaseScreenState<RegisterPhotoScreen> {
                       const SizedBox(height: AppDimensions.defaultPadding,),
                       GestureDetector(
                         onTap: () => _onPhotoTap(viewModel),
-                        child: const Icon(Icons.photo_camera)
+                        child: const Icon(Icons.photo_camera),
                       )
                     ],
                   ),
                 ),
                 PrimaryButton(
                   title: AppLocalizations.of(context)!.register_photo_screen_next_button,
-                  onPressed: () {
-                   if (viewModel.selectedPhoto != null) {
-                     widget.userData?.setPhoto(viewModel.selectedPhoto!);
-                     Navigator.push(
-                       context,
-                       MaterialPageRoute(
-                         builder: (context) => RegisterSummaryScreen(userData: widget.userData),
-                       ),
-                     );
-                   }
-                  },
+                  onPressed: () => _onButtonPressed(viewModel),
                 ),
                 const SizedBox(height: AppDimensions.defaultPadding,)
               ],
@@ -92,16 +73,30 @@ class _RegisterPhotoScreenState extends BaseScreenState<RegisterPhotoScreen> {
     },);
   }
   
+  void _onButtonPressed(RegisterPhotoViewModel viewModel) {
+    if (viewModel.selectedPhoto != null) {
+      widget.userData?.setPhoto(viewModel.selectedPhoto!);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => RegisterSummaryScreen(userData: widget.userData),
+        ),
+      );
+    } else {
+      showErrorToast(AppLocalizations.of(context)!.register_photo_error);
+    }
+  }
+  
   Future<void> _onPhotoTap(RegisterPhotoViewModel viewModel) async {
     final XFile? photo = await ImagePicker().pickImage(source: ImageSource.camera);
     if (photo != null) {
       viewModel.setPhoto(await photo.readAsBytes());
-  }
+    } 
   }
 
   Widget _photoPlaceholder() {
     return Center(
-      child: PhotoPlaceholder(text: AppLocalizations.of(context)!.register_photo_placeholder_text,)
+      child: PhotoPlaceholder(text: AppLocalizations.of(context)!.register_photo_placeholder_text,),
     );
   }
 
