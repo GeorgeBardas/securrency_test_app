@@ -23,5 +23,11 @@
 
   "register_photo_screen_title": "Make a selfie",
   "register_photo_placeholder_text": "Photo",
-  "register_photo_screen_next_button": "NEXT"
+  "register_photo_screen_next_button": "NEXT",
+
+  "register_summary_screen_title": "Summary",
+  "register_summary_email": "Email",
+  "register_summary_birth_date": "Birth Date",
+  "register_summary_country": "Residence",
+  "register_summary_screen_button": "REGISTER"
 }

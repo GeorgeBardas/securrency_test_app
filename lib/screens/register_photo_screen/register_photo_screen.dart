@@ -9,8 +9,10 @@ import 'package:image_picker/image_picker.dart';
 import "package:intl/intl.dart";
 import "package:provider/provider.dart";
 import "package:securrency_test_app/networking/models/country.dart";
+import 'package:securrency_test_app/networking/models/user.dart';
 import 'package:securrency_test_app/screens/register_photo_screen/register_photo_view_model.dart';
 import "package:securrency_test_app/screens/register_screen/register_view_model.dart";
+import 'package:securrency_test_app/screens/register_summary_screen.dart';
 import "package:securrency_test_app/util/app_dimensions.dart";
 import "package:securrency_test_app/util/base_screen_state.dart";
 import 'package:securrency_test_app/util/images.dart';
@@ -18,10 +20,13 @@ import 'package:securrency_test_app/util/routes.dart';
 import "package:securrency_test_app/util/widgets/field_validators.dart";
 import "package:securrency_test_app/util/widgets/input_field.dart";
 import 'package:securrency_test_app/util/widgets/photo_placeholder.dart';
+import 'package:securrency_test_app/util/widgets/photo_widget.dart';
 import "package:securrency_test_app/util/widgets/primary_button.dart";
 
 class RegisterPhotoScreen extends StatefulWidget {
-  const RegisterPhotoScreen({Key? key}) : super(key: key);
+  const RegisterPhotoScreen({Key? key, required this.userData}) : super(key: key);
+
+  final User? userData;
 
   @override
   _RegisterPhotoScreenState createState() => _RegisterPhotoScreenState();
@@ -66,7 +71,17 @@ class _RegisterPhotoScreenState extends BaseScreenState<RegisterPhotoScreen> {
                 ),
                 PrimaryButton(
                   title: AppLocalizations.of(context)!.register_photo_screen_next_button,
-                  onPressed: () => {},
+                  onPressed: () {
+                   if (viewModel.selectedPhoto != null) {
+                     widget.userData?.setPhoto(viewModel.selectedPhoto!);
+                     Navigator.push(
+                       context,
+                       MaterialPageRoute(
+                         builder: (context) => RegisterSummaryScreen(userData: widget.userData),
+                       ),
+                     );
+                   }
+                  },
                 ),
                 const SizedBox(height: AppDimensions.defaultPadding,)
               ],
@@ -92,14 +107,7 @@ class _RegisterPhotoScreenState extends BaseScreenState<RegisterPhotoScreen> {
 
   Widget _buildPhoto(Uint8List photo) {
     return Center(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.25,
-        width: MediaQuery.of(context).size.height * 0.25,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(AppDimensions.photoPlaceholderBorderRadius),
-          child: Center(child: Image.memory(photo,)),
-        ),
-      ),
+      child: PhotoWidget(photo: photo,),
     );
   }
 }

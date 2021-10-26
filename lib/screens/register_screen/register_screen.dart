@@ -7,6 +7,7 @@ import "package:form_field_validator/form_field_validator.dart";
 import "package:intl/intl.dart";
 import "package:provider/provider.dart";
 import "package:securrency_test_app/networking/models/country.dart";
+import 'package:securrency_test_app/screens/register_photo_screen/register_photo_screen.dart';
 import "package:securrency_test_app/screens/register_screen/register_view_model.dart";
 import "package:securrency_test_app/util/app_dimensions.dart";
 import "package:securrency_test_app/util/base_screen_state.dart";
@@ -163,7 +164,12 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
             _passwordController.text,
             _countryController.text,
         );
-        Navigator.of(context).pushNamed(Routes.registerPhotoScreen);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RegisterPhotoScreen(userData: user),
+          ),
+        );
       }
     }
   }
