@@ -40,6 +40,7 @@ Note - API key would be hiddent in an .env file but for testing purposes I expos
       3. if the coordinates are not null the geocoder will try to find the address
       4. if the country name from the address is found in the countries list it will place it at the beginning(may not work sometimes because of the free API key limitations, would need an error case but this would not happen in a real case)
       5. the password entered is encrypted with AES(in a real case, a real encryption key received from the BE would be used)
+      6. native calendar pickers are use(cupertino/material)
    3. Register Photo Screen
       1. user is asked to take a photo of himself
    4. Register Summary Screen

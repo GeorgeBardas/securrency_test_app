@@ -1,26 +1,32 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import "package:flutter/cupertino.dart";
+import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
-import 'package:provider/provider.dart';
-import 'package:securrency_test_app/main.dart';
-import 'package:securrency_test_app/screens/register_screen/register_screen.dart';
-import 'package:securrency_test_app/screens/register_screen/register_view_model.dart';
-import 'package:securrency_test_app/screens/welcome_screen/welcome_screen.dart';
+import "package:provider/provider.dart";
+import "package:securrency_test_app/providers/general_provider.dart";
+import "package:securrency_test_app/screens/welcome_screen/welcome_screen.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
-import 'package:securrency_test_app/util/widgets/input_field.dart';
+import "package:securrency_test_app/util/widgets/primary_button.dart";
+import "package:securrency_test_app/util/widgets/secondary_button.dart";
 
 void main() {
-  testWidgets("Register screen UI test", (WidgetTester tester) async {
+  testWidgets("Welcome screen UI test", (WidgetTester tester) async {
     await tester.pumpWidget(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider<RegisterViewModel>(create: (context) => RegisterViewModel(),
-          )
+      MaterialApp(
+        locale: const Locale("en", ""),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
         ],
-        child: RegisterScreen(),
-      )
+        home: ChangeNotifierProvider<GeneralProvider>(
+          create: (context) => GeneralProvider(),
+        child: WelcomeScreen(),),
+      ),
     );
 
-    expect(find.byType(InputField), findsNWidgets(5));
+    final BuildContext context = tester.element(find.byType(WelcomeScreen));
+
+    expect(find.byType(PrimaryButton), findsOneWidget);
+    expect(find.byType(SecondaryButton), findsOneWidget);
+    expect(find.text(AppLocalizations.of(context)!.welcome_screen_login_button), findsOneWidget);
+    expect(find.text(AppLocalizations.of(context)!.welcome_screen_register_button), findsOneWidget);
   });
 }
