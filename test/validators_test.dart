@@ -1,6 +1,6 @@
 import "package:flutter_test/flutter_test.dart";
 import "package:form_field_validator/form_field_validator.dart";
-import 'package:securrency_test_app/util/widgets/field_validators.dart';
+import "package:securrency_test_app/util/widgets/field_validators.dart";
 
 void main() {
   test("valid email test", () {

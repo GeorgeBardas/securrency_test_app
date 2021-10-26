@@ -11,7 +11,7 @@ void main() {
       baseUrl: "uat-url.com",
       countriesUrl: "http://api.countrylayer.com/v2/",
       countriesApiKey: "c9d04d904e56105ff370e404477c1190",
-      geoApiKey: "AIzaSyDDvvVpTuyxjEaoopv_5tGpOp8hsomlxjw"
+      geoApiKey: "AIzaSyDDvvVpTuyxjEaoopv_5tGpOp8hsomlxjw",
     ),
   );
 

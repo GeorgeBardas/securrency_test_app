@@ -1,10 +1,10 @@
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:provider/provider.dart";
 import "package:securrency_test_app/providers/general_provider.dart";
 import "package:securrency_test_app/screens/welcome_screen/welcome_screen.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:securrency_test_app/util/widgets/primary_button.dart";
 import "package:securrency_test_app/util/widgets/secondary_button.dart";
 

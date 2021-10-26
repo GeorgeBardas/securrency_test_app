@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:geocode/geocode.dart";
 import "package:geolocator/geolocator.dart";
-import 'package:securrency_test_app/config/flavor_config.dart';
+import "package:securrency_test_app/config/flavor_config.dart";
 import "package:securrency_test_app/networking/models/country.dart";
 import "package:securrency_test_app/networking/models/user.dart";
 import "package:securrency_test_app/networking/repositories/countries_repository.dart";
