@@ -9,4 +9,6 @@ class AppDimensions {
   static const buttonBorderWidth = 2.0;
 
   static const titleFontSize = 30.0;
+
+  static const photoPlaceholderBorderRadius = 100.0;
 }

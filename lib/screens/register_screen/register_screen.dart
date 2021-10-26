@@ -10,6 +10,7 @@ import "package:securrency_test_app/networking/models/country.dart";
 import "package:securrency_test_app/screens/register_screen/register_view_model.dart";
 import "package:securrency_test_app/util/app_dimensions.dart";
 import "package:securrency_test_app/util/base_screen_state.dart";
+import 'package:securrency_test_app/util/routes.dart';
 import "package:securrency_test_app/util/widgets/field_validators.dart";
 import "package:securrency_test_app/util/widgets/input_field.dart";
 import "package:securrency_test_app/util/widgets/primary_button.dart";
@@ -162,6 +163,7 @@ class _RegisterScreenState extends BaseScreenState<RegisterScreen> {
             _passwordController.text,
             _countryController.text,
         );
+        Navigator.of(context).pushNamed(Routes.registerPhotoScreen);
       }
     }
   }

@@ -19,5 +19,9 @@
   "register_screen_birth_date_label": "Birth Date",
   "register_screen_birth_date_error": "You must be 18 years old to continue",
   "register_screen_country_label": "Residence Country",
-  "register_screen_next_button": "Next"
+  "register_screen_next_button": "NEXT",
+
+  "register_photo_screen_title": "Make a selfie",
+  "register_photo_placeholder_text": "Photo",
+  "register_photo_screen_next_button": "NEXT"
 }
