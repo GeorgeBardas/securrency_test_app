@@ -30,7 +30,7 @@
    3. countriesApiKey - API Key for the countries API
    4. geoApiKey - API Key for Google's geolocation
 
-Note - API key would be hiddent in an .env file but for testing purposes I exposed them in the flavors configs
+Note - API keys would be hidden in an .env file but for testing purposes I exposed them in the flavors configs
 
 ### **Screens**
    1. Welcome Screen
@@ -46,10 +46,11 @@ Note - API key would be hiddent in an .env file but for testing purposes I expos
    4. Register Summary Screen
       1. all the info the user entered in the previous screens is displayed before he completes the registration process
 
-## Sugestions
-   1. Splash Screen
-      1. screen to preload all the data necessary and decide where to redirect the user (welcome screen/main screen for user already logged in)
-   2. LTR/RTL support with TextDirectionality if any language needs
-   3. SSL Pinning for security between the app and the BE
-   4. Authentication with biometrics(Fingerprint/Face ID) after register
-   5. Root/Jailbreak prevention
+## **Sugestions**
+   1. Splash screen to preload all the data necessary and decide where to redirect the user (welcome screen/main screen for user already logged in)
+   1. LTR/RTL support with TextDirectionality if needed
+   2. SSL Pinning for security between the app and the BE
+   3. Authentication with biometrics(Fingerprint/Face ID) after register
+   4. Root/Jailbreak prevention
+   5. Authentications system with JWT(access token, refresh token that can be stored locally with encrypted_local_storage)
+   6. The MVVM with Provider architecture used in the project seems to be suitable for a medium sized app, but would also work Redux or BLoC
