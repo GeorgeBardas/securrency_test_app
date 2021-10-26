@@ -32,6 +32,8 @@ dependencies:
   form_field_validator: ^1.1.0
   image_picker: ^0.8.4+3
   intl: ^0.17.0
+  geolocator: ^7.7.1
+  geocode: ^1.0.1
   provider: ^6.0.1
 
 

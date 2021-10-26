@@ -7,10 +7,12 @@ class FlavorValues {
     required this.baseUrl,
     required this.countriesUrl,
     required this.countriesApiKey,
+    required this.geoApiKey,
   });
   final String baseUrl;
   final String countriesUrl;
   final String countriesApiKey;
+  final String geoApiKey;
 }
 
 class FlavorConfig {

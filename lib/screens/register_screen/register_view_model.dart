@@ -1,4 +1,7 @@
 import "package:flutter/material.dart";
+import "package:geocode/geocode.dart";
+import "package:geolocator/geolocator.dart";
+import 'package:securrency_test_app/config/flavor_config.dart';
 import "package:securrency_test_app/networking/models/country.dart";
 import "package:securrency_test_app/networking/models/user.dart";
 import "package:securrency_test_app/networking/repositories/countries_repository.dart";
@@ -21,9 +24,40 @@ class RegisterViewModel extends ChangeNotifier {
     final result = await CountriesRepository().getCountries();
     _countries = result;
 
+    await _findCountry();
+
     _setLoading(false);
 
     return result;
+  }
+
+  Future<Address?> _getCurrentAddress() async {
+    try {
+      final Position position = await Geolocator
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.medium);
+      final Address address = await GeoCode(apiKey: FlavorConfig.instance!.values.geoApiKey)
+          .reverseGeocoding(latitude: position.latitude, longitude: position.longitude);
+      return address;
+    } catch (e) {
+        return null;
+    }
+  }
+
+  Future<void> _findCountry() async {
+    final Address? address = await _getCurrentAddress();
+
+    if (address != null) {
+      Country? country;
+      try {
+        country = _countries?.firstWhere((element) => element.name == address.countryName);
+      } catch (e) {
+        country = null;
+      }
+      if (country != null) {
+        _countries?.remove(country);
+        _countries?.insert(0, country);
+      }
+    }
   }
 
   User getUser(String email, String password, String country) {
