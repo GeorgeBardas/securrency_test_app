@@ -1,4 +1,4 @@
-# Securrency Test App
+# **Securrency Test App**
  
  ### The app supports both light and dark mode(dark theme not entirely implemented)
 
@@ -54,3 +54,11 @@ Note - API keys would be hidden in an .env file but for testing purposes I expos
    4. Root/Jailbreak prevention
    5. Authentications system with JWT(access token, refresh token that can be stored locally with encrypted_local_storage)
    6. The MVVM with Provider architecture used in the project seems to be suitable for a medium sized app, but would also work Redux or BLoC
+   7. Jenkins with fastlane for build automation
+   8. SonarQube for code quality and validation
+   9. Integration with Apple/Google Pay for new features regarding cards/in-app payments
+   10. Websockets with FutureBuilder for live stream of data for trading data
+
+## **Known Issues**
+   1. The matching between the list of countries and the geocode API is made via the country name. It should be made via id(maybe country code?)
+   2. The cupertino pickers does not trigger onSelected on the first item from the list
